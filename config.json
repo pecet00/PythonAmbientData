@@ -1,0 +1,8 @@
+{
+  "main_path": "/Users/filip/Desktop/Dev/PythonAmbientData/",
+  "fit": {
+    "kalibracja": "SENC200004",
+    "proszkownia": "SENC300002",
+    "inne": "SENC400001"
+  }
+}
