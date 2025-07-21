@@ -40,4 +40,8 @@ plt.ylabel("Temperatura")
 plt.title(file_path)
 
 plt.tight_layout()
+<<<<<<< HEAD
 plt.show()
+=======
+plt.show()
+>>>>>>> f0df705 (first commit)
