@@ -2,13 +2,18 @@ import tkinter as tk
 from tkinter import ttk
 from tkcalendar import DateEntry
 import subprocess
-
+import json
 
 def run_program():
-    date = cal.get_date().strftime("%d-%m-%y")
+    date = cal.get_date().strftime("20%y-%m-%d")
     location = combo_location.get()
     data_type = combo_data_type.get()
     anomalie = spin_window.get()
+
+    with open('config.json') as f:
+        config = json.load(f)
+    
+    
 
     cmd = ['python3', 'main.py', date, location, data_type, anomalie]
     try:
@@ -21,7 +26,7 @@ def run_program():
     except Exception as e:
         print(f"Błąd podczas uruchamiania programu: {e}")
 
-    date = cal.get_date().strftime("%d-%m-%y")
+    date = cal.get_date().strftime("20%y-%m-%d")
     location = combo_location.get()
     data_type = combo_data_type.get()
 
@@ -41,16 +46,22 @@ root.title("GUI for ambient data")
 
 
 tk.Label(root, text="Data:").grid(row=0, column=0, sticky="e")
-cal = DateEntry(root, date_pattern='dd-mm-yy')
+cal = DateEntry(root, date_pattern='yy-mm-dd')
 cal.grid(row=0, column=1)
 
+with open('config.json') as f:
+        config = json.load(f)
+locList = list(config["fit"].keys())
+
+
 tk.Label(root, text="Lokalizacja:").grid(row=1, column=0, sticky="e")
-combo_location = ttk.Combobox(root, values=["kalibracja", "proszkownia", "inne"])
+combo_location = ttk.Combobox(root, values=locList)
 combo_location.grid(row=1, column=1)
 combo_location.current(0) 
 
+
 tk.Label(root, text="Typ danych:").grid(row=2, column=0, sticky="e")
-combo_data_type = ttk.Combobox(root, values=["Temperature", "Humidity", "Pressure", "Battery"])
+combo_data_type = ttk.Combobox(root, values=config["options"])
 combo_data_type.grid(row=2, column=1)
 combo_data_type.current(0)
 

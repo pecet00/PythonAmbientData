@@ -24,7 +24,7 @@ localization = fit.get(args.location)
 
 
 #file_path = main_path+ args.date + str(localization) +".csv"
-file_path = main_path+str(localization)+'.csv'
+file_path = main_path+args.date+"/"+str(localization)+'.csv'
 
 df = pd.read_csv(file_path)
 df['Timestamp'] = pd.to_datetime(df['Timestamp'])
