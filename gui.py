@@ -10,34 +10,20 @@ def run_program():
     data_type = combo_data_type.get()
     anomalie = spin_window.get()
 
-    with open('config.json') as f:
+    with open('main/config.json') as f:
         config = json.load(f)
-    
-    
 
-    cmd = ['python3', 'main.py', date, location, data_type, anomalie]
+    cmd = ['./main/main.exe', date, location, data_type, anomalie]
+
     try:
         result = subprocess.run(cmd, capture_output=True, text=True)
+
         print("Program output:")
         print(result.stdout)
         if result.stderr:
             print("Errors:")
             print(result.stderr)
-    except Exception as e:
-        print(f"Błąd podczas uruchamiania programu: {e}")
 
-    date = cal.get_date().strftime("20%y-%m-%d")
-    location = combo_location.get()
-    data_type = combo_data_type.get()
-
-    cmd = ['python3', 'main.py', date, location, data_type]
-    try:
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        print("Program output:")
-        print(result.stdout)
-        if result.stderr:
-            print("Errors:")
-            print(result.stderr)
     except Exception as e:
         print(f"Błąd podczas uruchamiania programu: {e}")
 
@@ -75,7 +61,7 @@ btn_run.grid(row=4, column=0, columnspan=2, pady=10)
 import tkinter.messagebox as mb
 
 def show_info():
-    mb.showinfo("?", "auth: FK")
+    mb.showinfo("?", "auth: FK https://github.com/pecet00")
 
 btn_info = tk.Button(root, text="?", command=show_info)
 btn_info.grid(row=4, column=2, padx=10)

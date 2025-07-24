@@ -13,7 +13,7 @@ parser.add_argument('anomaly', type=int, help="anomaly")
 args= parser.parse_args()
 
 
-with open('config.json') as f:
+with open('main/config.json') as f:
     config = json.load(f)
 main_path = config['main_path']
 fit = config['fit']
